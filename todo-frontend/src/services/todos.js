@@ -18,4 +18,4 @@ const deleteTodo = (todo) => {
     return axios.delete(baseUrl, todo)
 }
 
-export default { getAll, createTodo, updateTodo }
+export default { getAll, createTodo, updateTodo, deleteTodo }

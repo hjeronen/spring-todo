@@ -1,14 +1,12 @@
 import React from 'react'
 import todoService from './services/todos'
+import TodoList from './components/TodoList'
 
 
 class App extends React.Component {
   constructor(props) {
     super(props)
-
-    this.state = {
-      todos: []
-    }
+    this.state = { todos: [] }
   }
 
   componentDidMount = () => {
@@ -23,10 +21,7 @@ class App extends React.Component {
     return (
       <div>
         <h1>Spring Boot ToDo</h1>
-        {this.state.todos.length == 0
-        ? <div>Nothing to do.</div>
-        : this.state.todos.map(todo => <li key={todo.id}>{todo.text}</li>)
-        }
+        <TodoList todos={this.state.todos}/>
       </div>
     )
   }
