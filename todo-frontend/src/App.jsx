@@ -1,6 +1,7 @@
 import React from 'react'
 import todoService from './services/todos'
 import TodoList from './components/TodoList'
+import { Container, Navbar } from 'react-bootstrap'
 
 
 class App extends React.Component {
@@ -19,10 +20,14 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
-        <h1>Spring Boot ToDo</h1>
+      <Container fluid>
+        <Navbar expand='lg' bg='dark' data-bs-theme='dark'>
+          <Container>
+            <Navbar.Brand href='/'>Spring Boot ToDo</Navbar.Brand>
+          </Container>
+        </Navbar>
         <TodoList todos={this.state.todos}/>
-      </div>
+      </Container>
     )
   }
 }

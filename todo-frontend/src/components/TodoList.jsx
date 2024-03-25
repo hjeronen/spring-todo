@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Col, Container, ListGroup, Row } from 'react-bootstrap'
 
 class TodoList extends Component {
   constructor(props) {
@@ -7,12 +8,23 @@ class TodoList extends Component {
 
   render() {
     return (
-      <div>
-        {this.props.todos.length == 0
-          ? <div>Nothing to do.</div>
-          : this.props.todos.map(todo => <li key={todo.id}>{todo.text}</li>)
-        }
-      </div>
+      <Container>
+        <Row>
+          <Col md={10}>
+            <ListGroup variant='flush'>
+              {this.props.todos.length == 0
+                ? <ListGroup.Item>Nothing to do.</ListGroup.Item>
+                : this.props.todos.map(todo => 
+                    <ListGroup.Item key={todo.id}>
+
+                      {todo.text}
+                    </ListGroup.Item>
+                  )
+              }
+            </ListGroup>
+          </Col>
+        </Row>
+      </Container>
     )
   }
 
