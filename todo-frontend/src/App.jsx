@@ -1,5 +1,6 @@
 import React from 'react'
-import axios from 'axios'
+import todoService from './services/todos'
+
 
 class App extends React.Component {
   constructor(props) {
@@ -10,17 +11,15 @@ class App extends React.Component {
     }
   }
 
-  
-
   componentDidMount = () => {
-    axios.get('http://localhost:8080/todos')
+    todoService
+      .getAll()
       .then(response => {
         this.setState({ todos: response.data })
       })
   }
 
   render() {
-    console.log(this.state.todos)
     return (
       <div>
         <h1>Spring Boot ToDo</h1>
