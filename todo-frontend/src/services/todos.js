@@ -11,11 +11,11 @@ const createTodo = (todo) => {
 }
 
 const updateTodo = (todo) => {
-    return axios.put(baseUrl, todo)
+    return axios.put(baseUrl + '/' + todo.id, todo)
 }
 
 const deleteTodo = (todo) => {
-    return axios.delete(baseUrl, todo)
+    return axios.delete(baseUrl + '/' + todo.id, todo)
 }
 
 export default { getAll, createTodo, updateTodo, deleteTodo }

@@ -22,16 +22,22 @@ class App extends React.Component {
     })
   }
 
+  deleteTodo = (todo) => {
+    todoService.deleteTodo(todo).then((response) => {
+      this.setState({ todos: this.state.todos.filter((t) => t.id != todo.id) })
+    })
+  }
+
   render() {
     return (
       <Container fluid>
-        <Navbar expand="lg" bg="dark" data-bs-theme="dark">
+        <Navbar expand='lg' bg='dark' data-bs-theme='dark'>
           <Container>
-            <Navbar.Brand href="/">Spring Boot ToDo</Navbar.Brand>
+            <Navbar.Brand href='/'>Spring Boot ToDo</Navbar.Brand>
           </Container>
         </Navbar>
         <TodoForm addTodo={this.addNewTodo} />
-        <TodoList todos={this.state.todos} />
+        <TodoList todos={this.state.todos} deleteTodo={this.deleteTodo} />
       </Container>
     )
   }
