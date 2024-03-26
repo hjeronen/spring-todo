@@ -1,8 +1,8 @@
 import React from 'react'
 import todoService from './services/todos'
 import TodoList from './components/TodoList'
+import TodoForm from './components/TodoForm'
 import { Container, Navbar } from 'react-bootstrap'
-
 
 class App extends React.Component {
   constructor(props) {
@@ -11,22 +11,27 @@ class App extends React.Component {
   }
 
   componentDidMount = () => {
-    todoService
-      .getAll()
-      .then(response => {
-        this.setState({ todos: response.data })
-      })
+    todoService.getAll().then((response) => {
+      this.setState({ todos: response.data })
+    })
+  }
+
+  addNewTodo = (todo) => {
+    todoService.createTodo(todo).then((response) => {
+      this.setState({ todos: this.state.todos.concat(response.data) })
+    })
   }
 
   render() {
     return (
       <Container fluid>
-        <Navbar expand='lg' bg='dark' data-bs-theme='dark'>
+        <Navbar expand="lg" bg="dark" data-bs-theme="dark">
           <Container>
-            <Navbar.Brand href='/'>Spring Boot ToDo</Navbar.Brand>
+            <Navbar.Brand href="/">Spring Boot ToDo</Navbar.Brand>
           </Container>
         </Navbar>
-        <TodoList todos={this.state.todos}/>
+        <TodoForm addTodo={this.addNewTodo} />
+        <TodoList todos={this.state.todos} />
       </Container>
     )
   }
