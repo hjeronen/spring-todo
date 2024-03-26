@@ -31,7 +31,7 @@ class App extends React.Component {
   render() {
     return (
       <Container fluid>
-        <Navbar expand='lg' bg='dark' data-bs-theme='dark'>
+        <Navbar expand='lg'>
           <Container>
             <Navbar.Brand href='/'>Spring Boot ToDo</Navbar.Brand>
           </Container>

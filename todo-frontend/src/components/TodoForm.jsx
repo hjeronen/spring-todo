@@ -48,7 +48,9 @@ class TodoForm extends Component {
                     />
                   </Col>
                   <Col>
-                    <Button type='submit'>Add</Button>
+                    <Button type='submit' className='btn-add'>
+                      Add
+                    </Button>
                   </Col>
                 </Row>
               </Form.Group>

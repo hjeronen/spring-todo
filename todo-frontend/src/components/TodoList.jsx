@@ -22,10 +22,15 @@ class TodoList extends Component {
                 <ListGroup.Item>Nothing to do.</ListGroup.Item>
               ) : (
                 this.props.todos.map((todo) => (
-                  <ListGroup.Item key={todo.id}>
+                  <ListGroup.Item
+                    key={todo.id}
+                    className={todo.done ? 'list-group-item-done' : ''}
+                  >
                     <Row>
-                      <Col md={10}>{todo.text}</Col>
-                      <Col md={2}>
+                      <Col md={10} className='col-todo'>
+                        {todo.text}
+                      </Col>
+                      <Col md={2} style={{ paddingTop: 4 }}>
                         <Button
                           variant='danger'
                           onClick={() => this.handleDelete(todo)}

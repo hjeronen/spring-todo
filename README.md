@@ -39,3 +39,33 @@ Write the name of your database to the end of database url.
 Once the database server is running, run `gradle build`. If the build is successful, try starting the app with `./gradlew bootRun`.
 
 The app should start at http://localhost:8080. The saved todos should be visible at http://localhost:8080/todos.
+
+## Notes
+
+### CORS
+
+GET and POST methods are allowed by default in Spring Boot, but DELETE caused the following error:
+
+```
+Access to XMLHttpRequest at 'http://localhost:8080/todos/155' from origin 'http://localhost:5173' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+```
+
+The CORS instructions given in Spring Boot tutorial did not work. This [StackOverflow posting](https://stackoverflow.com/a/57185323) had a working solution, with some modifications - define a bean for CORS Filter configurations:
+
+```
+@Bean
+	public FilterRegistrationBean<CorsFilter> simpleCorsFilter() {
+		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+		CorsConfiguration config = new CorsConfiguration();
+		config.setAllowCredentials(true);
+		config.setAllowedOrigins(Arrays.asList("http://localhost:5173"));
+		config.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE"));
+		config.setAllowedHeaders(Arrays.asList("*"));
+		source.registerCorsConfiguration("/**", config);
+		FilterRegistrationBean<CorsFilter> bean = new FilterRegistrationBean<>(new CorsFilter(source));
+		bean.setOrder(Ordered.HIGHEST_PRECEDENCE);
+		return bean;
+	}
+```
+
+There might be conflicting settings between the installed plugins and the approach in [Spring Boot CORS tutorial](https://spring.io/guides/gs/rest-service-cors#controller-method-cors-configuration).
