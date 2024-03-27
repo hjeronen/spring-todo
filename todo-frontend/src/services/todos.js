@@ -15,7 +15,7 @@ const updateTodo = (todo) => {
 }
 
 const deleteTodo = (todo) => {
-    return axios.delete(baseUrl + '/' + todo.id, todo)
+    return axios.delete(baseUrl + '/' + todo.id)
 }
 
 export default { getAll, createTodo, updateTodo, deleteTodo }

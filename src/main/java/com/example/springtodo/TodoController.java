@@ -1,8 +1,10 @@
 package com.example.springtodo;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -30,13 +32,17 @@ public class TodoController {
         return this.todoRepository.save(todo);
     }
 
-    @PutMapping
-    public Todo updateTodo(@RequestBody Todo todo) {
-        return this.todoRepository.save(todo);
+    @PutMapping("{id}")
+    public ResponseEntity<Todo> updateTodo(@PathVariable Integer id, @RequestBody Todo todo) {
+        Todo updatedTodo = this.todoRepository.findById(id).get();
+        updatedTodo.setDone(todo.getDone());
+        this.todoRepository.save(updatedTodo);
+        return ResponseEntity.ok(updatedTodo);
     }
 
-    @DeleteMapping
-    public void deleteTodo(@RequestBody Todo todo) {
-        this.todoRepository.delete(todo);
+    @DeleteMapping("{id}")
+    public void deleteTodo(@PathVariable("id") Integer id) {
+        Todo deletedTodo = this.todoRepository.findById(id).get();
+        this.todoRepository.delete(deletedTodo);
     }
 }

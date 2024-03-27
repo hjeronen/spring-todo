@@ -59,3 +59,19 @@
   border-color: var(--tertiary-color);
   color: var(--tertiary-color);
 }
+
+/* Experimental check mark */
+/* from: https://stackoverflow.com/a/21968665 */
+
+.check:before {
+  content: '\2713';
+  display: inline-block;
+  color: green;
+  padding: 0 6px 0 0;
+}
+
+.check {
+  list-style-type: none;
+  font-size: 20px;
+  padding: 5px;
+}
