@@ -2,6 +2,8 @@
 
 A simple ToDo app for learning Spring Boot. Using Gradle as the build tool and PostgreSQL as the database.
 
+<img width="900" alt="ToDo app" src="https://github.com/hjeronen/spring-todo/assets/73843204/741613cb-6cce-4a9b-b172-7601af3fc46e">
+
 ## Running the app
 
 #### Initializing the database
