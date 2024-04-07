@@ -4,7 +4,7 @@ A simple ToDo app for learning Spring Boot. Using Gradle as the build tool and P
 
 <img width="900" alt="ToDo app" src="https://github.com/hjeronen/spring-todo/assets/73843204/741613cb-6cce-4a9b-b172-7601af3fc46e">
 
-The color palette [here](https://colorhunt.co/palette/3630624d4c7df99417f5f5f5).
+The color palette was copied from [here](https://colorhunt.co/palette/3630624d4c7df99417f5f5f5).
 
 ## Running the app
 
